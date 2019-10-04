@@ -1,0 +1,13 @@
+git update-index --assume-unchanged config.yml
+
+git update-index --no-assume-unchanged config.yml
+
+https://packaging.python.org/tutorials/packaging-projects/
+
+python setup.py sdist bdist_wheel
+
+twine upload dist/*.tar.gz
+
+codecov --token=$CODECOV_TOKEN -f=./coverage.xml
+
+https://coverage.readthedocs.io/en/coverage-4.2/excluding.html
