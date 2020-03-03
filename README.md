@@ -35,9 +35,7 @@ wrapper = MegaToolsWrapper(megatools_path="D:\\megatools\\")
 
 ```
 
-If no specified megatools_path, use user path
-
-megatools_path : Directory where find all Megatools executable (megadl, megacopy, etc)
+megatools_path : Directory where find all Megatools executable (megadl, megacopy, etc), if not specified, use Megatools command from path
 
 ### megacopy - synchronize local and remote mega.nz directories
 
