@@ -26,6 +26,7 @@ class MegaToolsWrapper:
         proxy=None,
         config=None,
         ignore_config_file=False,
+        display_output=False,
     ):
         """
         Usage:
@@ -130,7 +131,7 @@ class MegaToolsWrapper:
 
         logger.debug(return_code)
 
-    def megadf(self, mega_link, limit_speed=0, path="./"):
+    def megadf(self, mega_link, limit_speed=0, path="./", display_output=False):
         """
         Usage:
             megadf.exe [OPTION] - display mega.nz storage quotas/usage
@@ -164,7 +165,7 @@ class MegaToolsWrapper:
 
         logger.debug(command)
 
-        return_code = execute_command(command)
+        return_code = execute_command(command, display_output)
 
         logger.debug(return_code)
 
@@ -180,6 +181,7 @@ class MegaToolsWrapper:
         proxy=None,
         config=None,
         ignore_config_file=False,
+        display_output=False,
     ):
         """
         Usage:
@@ -257,11 +259,11 @@ class MegaToolsWrapper:
 
         logger.debug(command)
 
-        return_code = execute_command(command)
+        return_code = execute_command(command, display_output)
 
         logger.debug(return_code)
 
-    def megaget(self, mega_link, limit_speed=0, path="./"):
+    def megaget(self, mega_link, limit_speed=0, path="./", display_output=False):
         """
         Usage:
             megaget.exe [OPTION] - download individual files from mega.nz
@@ -290,11 +292,11 @@ class MegaToolsWrapper:
 
         logger.debug(command)
 
-        return_code = execute_command(command)
+        return_code = execute_command(command, display_output)
 
         logger.debug(return_code)
 
-    def megals(self, mega_link, limit_speed=0, path="./"):
+    def megals(self, mega_link, limit_speed=0, path="./", display_output=False):
         """
         Usage:
           megals.exe [OPTION] - list files stored at mega.nz
@@ -329,13 +331,13 @@ class MegaToolsWrapper:
 
         logger.debug(command)
 
-        return_code = execute_command(command)
+        return_code = execute_command(command, display_output)
 
         logger.debug(return_code)
 
     def megamkdir(
         self,
-        dir=None,
+        dir,
         username=None,
         password=None,
         reload=False,
@@ -343,6 +345,7 @@ class MegaToolsWrapper:
         proxy=None,
         config=None,
         ignore_config_file=None,
+        display_output=False,
     ):
         """
         Usage:
@@ -405,11 +408,11 @@ class MegaToolsWrapper:
 
         logger.debug(command)
 
-        return_code = execute_command(command)
+        return_code = execute_command(command, display_output)
 
         logger.debug(return_code)
 
-    def megaput(self, mega_link, limit_speed=0, path="./"):
+    def megaput(self, mega_link, limit_speed=0, path="./", display_output=False):
         """
         Usage:
             megaput.exe [OPTION] - upload files to mega.nz
@@ -439,7 +442,7 @@ class MegaToolsWrapper:
 
         logger.debug(command)
 
-        return_code = execute_command(command)
+        return_code = execute_command(command, display_output)
 
         logger.debug(return_code)
 
@@ -453,6 +456,7 @@ class MegaToolsWrapper:
         limit_speed=None,
         config=None,
         ignore_config_file=False,
+        display_output=False,
     ):
         """
         Usage:
@@ -518,7 +522,7 @@ class MegaToolsWrapper:
 
         logger.debug(command)
 
-        return_code = execute_command(command)
+        return_code = execute_command(command, display_output)
 
         logger.debug(return_code)
 
@@ -532,6 +536,7 @@ class MegaToolsWrapper:
         proxy=None,
         config=None,
         ignore_config_file=False,
+        display_output=False,
     ):
         """
         Usage:
@@ -595,15 +600,24 @@ class MegaToolsWrapper:
 
         logger.debug(command)
 
-        return_code = execute_command(command)
+        return_code = execute_command(command, display_output)
 
         logger.debug(return_code)
 
 
-def execute_command(command):
+def execute_command(command, display_output=False):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    process.wait()
-    return process.returncode
+
+    if display_output:
+        while True:
+            output = process.stdout.readline()
+            if output == "" and process.poll() is not None:
+                break
+            if output:
+                print(output.strip())
+        return process.poll()
+    else:
+        return process.wait()
 
 
 if __name__ == "__main__":
