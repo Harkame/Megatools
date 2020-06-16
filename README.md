@@ -31,80 +31,17 @@ wrapper = MegaToolsWrapper()
 
 #OR
 
-wrapper = MegaToolsWrapper(megatools_path="D:\\megatools\\")
+wrapper = MegaToolsWrapper(executable="D:\\megatools\\megatools.exe")
 
 ```
 
-megatools_path : Directory where find all Megatools executable (megadl, megacopy, etc), if not specified, use Megatools command from path
+executable : Directory where find all Megatools executable (megadl, megacopy, etc), if not specified, use Megatools command from path
 
-### megacopy - synchronize local and remote mega.nz directories
 
-``` python
-
-wrapper.megacopy("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
-
-```
-
-### megadf - display mega.nz storage quotas/usage
+### dl - download exported files from mega.nz
 
 ``` python
 
-wrapper.megadf("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
-
-```
-
-### megadl - download exported files from mega.nz
-
-``` python
-
-wrapper.megadl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
-
-```
-
-### megaget - download individual files from mega.nz
-
-``` python
-
-wrapper.megaget("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
-
-```
-
-### megals - list files stored at mega.nz
-
-``` python
-
-wrapper.megals("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
-
-```
-
-### megamkdir - create directories at mega.nz
-
-``` python
-
-wrapper.megamkdir("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
-
-```
-
-### megaput - upload files to mega.nz
-
-``` python
-
-wrapper.megaput("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
-
-```
-
-### megareg - register a new mega.nz account
-
-``` python
-
-wrapper.megadl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
-
-```
-
-### megarm - remove files from mega.nz
-
-``` python
-
-wrapper.megarm("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
+wrapper.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
 
 ```
