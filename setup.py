@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="megatoolswrapper",
+    name="megatools",
     version="0.0.1",
     author="Harkame",
     description="Megatools's wrapper",
