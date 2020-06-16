@@ -1,4 +1,4 @@
-# MegaToolsWrapper
+# Megatools
 
 (UNDER CONSTRUCTION)
 
@@ -15,9 +15,9 @@ Simple python Megatools wrapper
 
 ## Installation
 
-``` bash
+``` shell
 
-pip install megatoolswrapper
+pip install megatools
 
 ```
 
@@ -26,22 +26,21 @@ pip install megatoolswrapper
 ### Initialization
 
 ``` python
+from megatools import Megatools
 
-wrapper = MegaToolsWrapper()
+megatools = Megatools()
 
 #OR
 
-wrapper = MegaToolsWrapper(executable="D:\\megatools\\megatools.exe")
+megatools = Megatools(executable="D:\\megatools\\megatools.exe")
 
 ```
-
-executable : Directory where find all Megatools executable (megadl, megacopy, etc), if not specified, use Megatools command from path
 
 
 ### dl - download exported files from mega.nz
 
 ``` python
 
-wrapper.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
+megatools.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
 
 ```
