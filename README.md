@@ -26,9 +26,9 @@ pip install megatools
 
 from megatools import Megatools
 
-megatools = Megatools() #Use megatools command in path
+megatools = Megatools() # Use megatools command in path
 
-#OR
+# OR
 
 megatools = Megatools(executable="D:\\megatools\\megatools.exe")
 

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="megatools",
-    version="0.0.1",
+    version="0.0.3",
     author="Harkame",
     description="Megatools's wrapper",
     long_description=long_description,
