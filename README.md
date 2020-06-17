@@ -70,4 +70,12 @@ megatools.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89Pnn
   version=None)
 ```
 
+For more informations, please see megatools dl command
+
+``` shell
+
+megatools dl --help
+
+```
+
 ### Another commands incomming
