@@ -38,7 +38,7 @@ megatools = Megatools(executable="D:\\megatools\\megatools.exe")
 
 ``` python
 
-megatools.get_filename("[MEGA_LINK_EXAMPLE]")
+megatools.get_filename([MEGA_LINK_EXAMPLE])
 
 ```
 
@@ -47,11 +47,11 @@ megatools.get_filename("[MEGA_LINK_EXAMPLE]")
 ``` python
 # Basic usage
 
-megatools.dl("[MEGA_LINK_EXAMPLE]")
+megatools.dl([MEGA_LINK_EXAMPLE])
 
 # With all optional arguments and their default values
 
-megatools.dl("[MEGA_LINK_EXAMPLE]",
+megatools.dl([MEGA_LINK_EXAMPLE],
   path=None,
   no_progress=False,
   print_names=False,
@@ -72,4 +72,4 @@ megatools.dl("[MEGA_LINK_EXAMPLE]",
 
 ### Another commands incomming
 
-[MEGA_LINK_EXAMPLE]: https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY
+[MEGA_LINK_EXAMPLE]: "https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
