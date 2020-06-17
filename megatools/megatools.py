@@ -166,7 +166,28 @@ if __name__ == "__main__":
     logger.addHandler(stream_handler)
     """
     megatools = Megatools(executable="C:\megatools\megatools.exe")
+    """
     exit_code = megatools.dl(
         "https://mega.nz/file/PpVB0CTZ#bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
+    )
+    """
+    exit_code = megatools.dl(
+        "https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY",
+        path=None,
+        no_progress=False,
+        print_names=False,
+        disable_resume=False,
+        username=None,
+        password=None,
+        reload=False,
+        limit_speed=0,
+        proxy=None,
+        netif=None,
+        ip_proto=None,
+        config=None,
+        ignore_config_file=False,
+        display_output=False,
+        debug=None,
+        version=None,
     )
     print(exit_code)
