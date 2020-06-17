@@ -53,7 +53,7 @@ megatools.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89Pnn
 
 # With all optional arguments and their default values
 
-megatools.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY", path="./destination/path", no_progress=False, print_names=False, disable_resume=False, username=None, password=None, reload=False, limit_speed=0, proxy=None, netif=None, ip_proto=None, config=None, ignore_config_file=False, display_output=False, debug=None, version=None)
+megatools.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY", path=None, no_progress=False, print_names=False, disable_resume=False, username=None, password=None, reload=False, limit_speed=0, proxy=None, netif=None, ip_proto=None, config=None, ignore_config_file=False, display_output=False, debug=None, version=None)
 ```
 
 ### Another commands incomming
