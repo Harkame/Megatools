@@ -10,7 +10,7 @@ setup(
     description="Megatools's wrapper",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Harkame/MegaToolsWrapper",
+    url="https://github.com/Harkame/Megatools",
     classifiers=[
         "Programming Language :: Python",
         "License :: OSI Approved",
