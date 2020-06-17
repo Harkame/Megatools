@@ -34,6 +34,8 @@ megatools = Megatools(executable="D:\\megatools\\megatools.exe")
 
 ```
 
+<!---
+
 ### Get mega link filename
 
 ``` python
@@ -41,6 +43,8 @@ megatools = Megatools(executable="D:\\megatools\\megatools.exe")
 megatools.get_filename("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
 
 ```
+
+-->
 
 ### dl - download exported files from mega.nz
 
