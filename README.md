@@ -4,8 +4,6 @@
 
 Simple python Megatools wrapper
 
-
-
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/726d6cfd795242b587cdb8b8e9308f7c)](https://www.codacy.com/manual/Harkame/Megatools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Harkame/Megatools&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/20a4bd84eaac4d6cdc9a/maintainability)](https://codeclimate.com/github/Harkame/Megatools/maintainability)
 
@@ -40,7 +38,7 @@ megatools = Megatools(executable="D:\\megatools\\megatools.exe")
 
 ``` python
 
-megatools.get_file_name("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
+megatools.get_filename("[MEGA_LINK_EXAMPLE]")
 
 ```
 
@@ -49,11 +47,11 @@ megatools.get_file_name("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27
 ``` python
 # Basic usage
 
-megatools.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
+megatools.dl("[MEGA_LINK_EXAMPLE]")
 
 # With all optional arguments and their default values
 
-megatools.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY",
+megatools.dl("[MEGA_LINK_EXAMPLE]",
   path=None,
   no_progress=False,
   print_names=False,
@@ -73,3 +71,5 @@ megatools.dl("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89Pnn
 ```
 
 ### Another commands incomming
+
+[MEGA_LINK_EXAMPLE]: https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY
