@@ -1,6 +1,7 @@
 import logging
 import subprocess
 import os
+import sys
 
 logger = logging.getLogger("megatools")
 
@@ -137,20 +138,52 @@ class Megatools:
 
         return exit_code
 
+    def get_filename(self, link):
+        command = f"{self.executable} dl {link} --no-ask-password --print-names --limit-speed=1"
 
-def execute_command(command, display_output=False):
+        logger.debug(command)
+
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            bufsize=1,
+            universal_newlines=True,
+        )
+
+        filename = None
+
+        line_stdout = process.stdout.readline()
+
+        process.terminate()
+
+        logger.debug(line_stdout)
+
+        if "error" in line_stdout.lower():
+            filename = os.path.basename(
+                line_stdout[line_stdout.index("exists:") + 8 : -1]
+            )
+        elif "warning" in line_stdout.lower():
+            filename = None
+        elif line_stdout is not None and len(line_stdout) > 0:
+            filename = line_stdout[0 : line_stdout.index(":")]
+
+        logger.debug(filename)
+
+        return filename
+
+
+def execute_command(command, display=False):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    if display_output:
+    if display:
         while True:
-            output = process.stdout.readline()
-            if output == "" and process.poll() is not None:
+            line = process.stdout.readline()
+            if not line:
                 break
-            if output:
-                print(output.strip())
-        return process.poll()
-    else:
-        return process.wait()
+
+    return process.returncode
 
 
 if __name__ == "__main__":
@@ -170,6 +203,7 @@ if __name__ == "__main__":
     exit_code = megatools.dl(
         "https://mega.nz/file/PpVB0CTZ#bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
     )
+    """
     """
     exit_code = megatools.dl(
         "https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY",
@@ -191,3 +225,8 @@ if __name__ == "__main__":
         version=None,
     )
     print(exit_code)
+    """
+    filename = megatools.get_filename(
+        "https://mega.nz/file/PpVB0CTZ#bfewa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
+    )
+    print(filename)
