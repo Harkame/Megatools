@@ -137,20 +137,42 @@ class Megatools:
 
         return exit_code
 
+    def get_filename(self, url):
+        command = self.megatools_path
+        command += "megadl.exe"
+        command += " "
+        command += url
+        command += " "
+        command += "--print-names "
+        command += " "
+        command += "--limit-speed=50"
 
-def execute_command(command, display_output=False):
+        process = subprocess.Popen(
+            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+
+        filename = None
+
+        line_stdout = str(process.stdout.readline().decode("utf-8"))
+
+        process.terminate()
+
+        if line_stdout is not None and len(line_stdout) > 0:
+            filename = line_stdout[0 : line_stdout.index(":")]
+
+        return filename
+
+
+def execute_command(command, display=False):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    if display_output:
+    if display:
         while True:
-            output = process.stdout.readline()
-            if output == "" and process.poll() is not None:
+            line = process.stdout.readline()
+            if not line:
                 break
-            if output:
-                print(output.strip())
-        return process.poll()
-    else:
-        return process.wait()
+
+    return process.returncode
 
 
 if __name__ == "__main__":
