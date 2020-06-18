@@ -34,17 +34,15 @@ megatools = Megatools(executable="D:\\megatools\\megatools.exe")
 
 ```
 
-<!---
-
 ### Get mega link filename
 
 ``` python
 
-megatools.get_filename("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
+filename = megatools.get_filename("https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY")
+
+# boot_T295XXU2ASJ1.img.tar
 
 ```
-
--->
 
 ### dl - download exported files from mega.nz
 
@@ -83,3 +81,7 @@ megatools dl --help
 ```
 
 ### Another commands incomming
+
+## TODO
+
++   Better get_filename algo, especially about error/returncode

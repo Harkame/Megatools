@@ -1,6 +1,7 @@
 import logging
 import subprocess
 import os
+import sys
 
 logger = logging.getLogger("megatools")
 
@@ -137,27 +138,33 @@ class Megatools:
 
         return exit_code
 
-    def get_filename(self, url):
-        command = self.megatools_path
-        command += "megadl.exe"
-        command += " "
-        command += url
-        command += " "
-        command += "--print-names "
-        command += " "
-        command += "--limit-speed=50"
+    def get_filename(self, link):
+        command = f"{self.executable} dl {link} --no-ask-password --print-names --limit-speed=1"
+
+        logger.debug(command)
 
         process = subprocess.Popen(
-            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            bufsize=1,
+            universal_newlines=True,
         )
 
         filename = None
 
-        line_stdout = str(process.stdout.readline().decode("utf-8"))
+        line_stdout = process.stdout.readline()
 
         process.terminate()
 
-        if line_stdout is not None and len(line_stdout) > 0:
+        print(line_stdout)
+
+        if "error" in line_stdout.lower():
+            filename = os.path.basename(
+                line_stdout[line_stdout.index("exists:") + 8 : -1]
+            )
+        elif line_stdout is not None and len(line_stdout) > 0:
             filename = line_stdout[0 : line_stdout.index(":")]
 
         return filename
@@ -193,6 +200,7 @@ if __name__ == "__main__":
         "https://mega.nz/file/PpVB0CTZ#bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
     )
     """
+    """
     exit_code = megatools.dl(
         "https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY",
         path=None,
@@ -213,3 +221,8 @@ if __name__ == "__main__":
         version=None,
     )
     print(exit_code)
+    """
+    filename = megatools.get_filename(
+        "https://mega.nz/file/PpVB0CTZ#bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
+    )
+    print(filename)
