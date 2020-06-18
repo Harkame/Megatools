@@ -158,14 +158,18 @@ class Megatools:
 
         process.terminate()
 
-        print(line_stdout)
+        logger.debug(line_stdout)
 
         if "error" in line_stdout.lower():
             filename = os.path.basename(
                 line_stdout[line_stdout.index("exists:") + 8 : -1]
             )
+        elif "warning" in line_stdout.lower():
+            filename = None
         elif line_stdout is not None and len(line_stdout) > 0:
             filename = line_stdout[0 : line_stdout.index(":")]
+
+        logger.debug(filename)
 
         return filename
 
@@ -223,6 +227,6 @@ if __name__ == "__main__":
     print(exit_code)
     """
     filename = megatools.get_filename(
-        "https://mega.nz/file/PpVB0CTZ#bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
+        "https://mega.nz/file/PpVB0CTZ#bfewa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
     )
     print(filename)
