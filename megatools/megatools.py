@@ -28,9 +28,8 @@ class Megatools:
         ip_proto=None,
         config=None,
         ignore_config_file=False,
-        display_output=False,
         debug=None,
-        version=None,
+        version=False,
     ):
         """
         Usage:
@@ -93,6 +92,108 @@ class Megatools:
             command += " "
 
         if limit_speed:
+            command += "--limit-speed="
+            command += limit_speed
+            command += " "
+
+        if proxy:
+            command += "--proxy="
+            command += proxy
+            command += " "
+
+        if netif:
+            command += "--netif="
+            command += netif
+            command += " "
+
+        if ip_proto:
+            command += "--ip_proto="
+            command += ip_proto
+            command += " "
+
+        if config:
+            command += "--config="
+            command += config
+            command += " "
+
+        if ignore_config_file:
+            command += "--ignore-config-file"
+            command += " "
+
+        if debug:
+            command += "--debug="
+            command += debug
+            command += " "
+
+        if version:
+            command += "--version"
+            command += " "
+
+        logger.debug(command)
+
+        exit_code, output = execute_command(command)
+
+        logger.debug(exit_code)
+
+        return output
+
+    def ls(
+        self,
+        username,
+        password,
+        folder="",
+        names=False,
+        recursive=False,
+        long=False,
+        header=False,
+        human=False,
+        print0=False,
+        export=False,
+        limit_speed=0,
+        proxy=None,
+        netif=None,
+        ip_proto=None,
+        config=None,
+        ignore_config_file=False,
+        debug=None,
+        version=False,
+    ):
+        command = f'{self.executable} ls -u {username} -p "{password}" --no-ask-password {folder}'
+
+        if names:
+            command += "--names"
+            command += " "
+
+        if recursive:
+            command += "--recursive"
+            command += " "
+
+        if long:
+            command += "--long"
+            command += " "
+
+        if header:
+            command += "--header"
+            command += " "
+
+        if human:
+            command += "--human"
+            command += " "
+
+        if print0:
+            command += "--print0"
+            command += " "
+
+        if export:
+            command += "--export"
+            command += " "
+
+        if limit_speed:
+            command += "----limit-speed="
+            command += limit_speed
+            command += " "
+
+        if limit_speed:
             command += "----limit-speed="
             command += limit_speed
             command += " "
@@ -132,11 +233,11 @@ class Megatools:
 
         logger.debug(command)
 
-        exit_code = execute_command(command, display_output)
+        exit_code, output = execute_command(command)
 
         logger.debug(exit_code)
 
-        return exit_code
+        return output
 
     def get_filename(self, link):
         command = f"{self.executable} dl {link} --no-ask-password --print-names --limit-speed=1"
@@ -174,59 +275,33 @@ class Megatools:
         return filename
 
 
-def execute_command(command, display=False):
-    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+def execute_command(command):
+    output = ""
 
-    if display:
-        while True:
-            line = process.stdout.readline()
-            if not line:
-                break
+    process = subprocess.Popen(
+        command,
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        bufsize=1,
+        universal_newlines=True,
+    )
 
-    return process.returncode
+    while True:
+        line = process.stdout.readline()
+        output += line
+        if not line:
+            break
+
+    return process.returncode, output
 
 
 if __name__ == "__main__":
-    """
-    formatter = logging.Formatter(
-        "%(asctime)s :: %(module)s :: %(lineno)s :: %(funcName)s :: %(message)s"
-    )
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(formatter)
-
-    logger.setLevel(logging.DEBUG)
-
-    logger.addHandler(stream_handler)
-    """
     megatools = Megatools(executable="C:\megatools\megatools.exe")
     """
-    exit_code = megatools.dl(
-        "https://mega.nz/file/PpVB0CTZ#bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
+    megatools.dl(
+        "https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
     )
     """
-    """
-    exit_code = megatools.dl(
-        "https://mega.nz/#!PpVB0CTZ!bwa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY",
-        path=None,
-        no_progress=False,
-        print_names=False,
-        disable_resume=False,
-        username=None,
-        password=None,
-        reload=False,
-        limit_speed=0,
-        proxy=None,
-        netif=None,
-        ip_proto=None,
-        config=None,
-        ignore_config_file=False,
-        display_output=False,
-        debug=None,
-        version=None,
-    )
-    print(exit_code)
-    """
-    filename = megatools.get_filename(
-        "https://mega.nz/file/PpVB0CTZ#bfewa51HbeKaVjuCff_lzbH4nQnV27uBxmcF89PnnACvY"
-    )
-    print(filename)
+    files = megatools.ls("me@mail.com", "mysuperpassword")
+    print(files)

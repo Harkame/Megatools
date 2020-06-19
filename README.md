@@ -81,6 +81,66 @@ megatools dl --help
 
 ```
 
+### ls - list files stored at mega.nz
+
+``` python
+# Basic usage
+
+files = megatools.dl("me@mail.com", "mysuperpassword")
+print(files)
+
+# /Root
+# /Root/document.txt
+# /Root/movie.mp4
+# /Root/test
+# /Root/test/document.txt
+# /Root/test/movie.mp4
+# /Trash
+
+# Specified folder
+
+files = megatools.dl("me@mail.com", "mysuperpassword", folder="/Root/test")
+print(files)
+
+# /Root/test
+# /Root/test/document.txt
+# /Root/test/movie.mp4
+
+# With all optional arguments and their default values
+
+files = megatools.ls(
+    "me@mail.com",
+    "mysuperpassword",
+    folder="",
+    names=False,
+    recursive=False,
+    long=False,
+    header=False,
+    human=False,
+    print0=False,
+    export=False,
+    limit_speed=0,
+    proxy=None,
+    netif=None,
+    ip_proto=None,
+    config=None,
+    ignore_config_file=False,
+    debug=None,
+    version=False,
+)
+```
+
+For more informations, please see megatools dl command
+
+``` shell
+
+megatools dl --help
+
+```
+
+files = megatools.ls("me@mail.com", "mysuperpassword")
+print(files)
+
 ### Another commands incomming
 
 ## TODO
