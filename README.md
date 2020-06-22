@@ -87,7 +87,6 @@ megatools dl --help
 # Basic usage
 
 files = megatools.dl("me@mail.com", "mysuperpassword")
-print(files)
 
 # /Root
 # /Root/document.txt
@@ -100,7 +99,6 @@ print(files)
 # Specified folder
 
 files = megatools.dl("me@mail.com", "mysuperpassword", folder="/Root/test")
-print(files)
 
 # /Root/test
 # /Root/test/document.txt
@@ -130,11 +128,11 @@ files = megatools.ls(
 )
 ```
 
-For more informations, please see megatools dl command
+For more informations, please see megatools ls command
 
 ``` shell
 
-megatools dl --help
+megatools ls --help
 
 ```
 
