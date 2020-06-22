@@ -136,9 +136,6 @@ megatools ls --help
 
 ```
 
-files = megatools.ls("me@mail.com", "mysuperpassword")
-print(files)
-
 ### Another commands incomming
 
 ## TODO
