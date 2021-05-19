@@ -58,7 +58,7 @@ class Megatools:
           --version                   Show version information
         """
 
-        command = f"{self.executable} dl {link} --no-ask-password"
+        command = f"{self.executable} dl {link} --no-ask-password "
 
         if path:
             command += "--path="
